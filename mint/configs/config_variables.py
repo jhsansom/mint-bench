@@ -47,14 +47,25 @@ FEEDBACK_CONFIG = {
 
 EVALUATED_MODEL_LIST = [
     {
-        "agent_class": "OpenAILMAgent",
+        "agent_class": "OllamaAgent",
         "config": {
-            "model_name": "gpt-3.5-turbo-0613",
+            "model_name": "qwen2.5:32b",
             "chat_mode": True,
             "max_tokens": 512,
             "temperature": 0.0,
+            #"openai.api_base": "http://localhost:11434/api",
+            "add_system_message": False,
         },
     },
+    # {
+    #     "agent_class": "OpenAILMAgent",
+    #     "config": {
+    #         "model_name": "gpt-3.5-turbo-0613",
+    #         "chat_mode": True,
+    #         "max_tokens": 512,
+    #         "temperature": 0.0,
+    #     },
+    # },
     # {
     #     "agent_class": "OpenAILMAgent",
     #     "config": {

@@ -17,11 +17,10 @@ class OpenAILMAgent(LMAgent):
         backoff.fibo,
         # https://platform.openai.com/docs/guides/error-codes/python-library-error-types
         (
-            openai.error.APIError,
-            openai.error.Timeout,
-            openai.error.RateLimitError,
-            openai.error.ServiceUnavailableError,
-            openai.error.APIConnectionError,
+            openai.APIError,
+            openai.Timeout,
+            openai.RateLimitError,
+            openai.APIConnectionError,
         ),
     )
     def call_lm(self, messages):
@@ -37,15 +36,15 @@ class OpenAILMAgent(LMAgent):
 
     def act(self, state):
         messages = state.history
-        try:
-            lm_output, token_usage = self.call_lm(messages)
-            for usage_type, count in token_usage.items():
-                state.token_counter[usage_type] += count
-            action = self.lm_output_to_action(lm_output)
-            return action
-        except openai.error.InvalidRequestError:  # mostly due to model context window limit
-            tb = traceback.format_exc()
-            return Action(f"", False, error=f"InvalidRequestError\n{tb}")
+        #try:
+        lm_output, token_usage = self.call_lm(messages)
+        for usage_type, count in token_usage.items():
+            state.token_counter[usage_type] += count
+        action = self.lm_output_to_action(lm_output)
+        return action
+        #except openai.InvalidRequestError:  # mostly due to model context window limit
+        #    tb = traceback.format_exc()
+        #    return Action(f"", False, error=f"InvalidRequestError\n{tb}")
         # except Exception as e:
         #     tb = traceback.format_exc()
         #     return Action(f"", False, error=f"Unknown error\n{tb}")
