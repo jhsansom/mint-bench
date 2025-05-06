@@ -451,6 +451,17 @@
     "Slope": "2.5"
   },
   {
+    "model": "Qwen3-8B",
+    "size": "8B",
+    "type": "Base",
+    "1": 12.0,
+    "2": 38.22,
+    "3": 50.22,
+    "4": 50.22,
+    "5": 52.89,
+    "Slope": "9.4"
+  },
+  {
     "model": "Starling-LM-7B-alpha",
     "size": "7B",
     "type": "RLHF",

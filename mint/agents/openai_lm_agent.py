@@ -38,8 +38,9 @@ class OpenAILMAgent(LMAgent):
         messages = state.history
         #try:
         lm_output, token_usage = self.call_lm(messages)
-        for usage_type, count in token_usage.items():
-            state.token_counter[usage_type] += count
+        state.token_counter['prompt_tokens'] += token_usage.prompt_tokens
+        state.token_counter['completion_tokens'] += token_usage.completion_tokens
+        state.token_counter['total_tokens'] += token_usage.total_tokens
         action = self.lm_output_to_action(lm_output)
         return action
         #except openai.InvalidRequestError:  # mostly due to model context window limit

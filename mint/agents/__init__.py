@@ -3,8 +3,8 @@ from .openai_lm_agent import OpenAILMAgent
 #from .bard_agent import BardLMAgent
 #from .openai_feedback_agent import OpenAIFeedbackAgent
 #from .claude_feedback_agent import ClaudeFeedbackAgent
-#from .vllm_feedback_agent import VLLMFeedbackAgent
-#from .vllm_agent import VLLMAgent
+from .vllm_feedback_agent import VLLMFeedbackAgent
+from .vllm_agent import VLLMAgent
 #from .claude_agent import ClaudeLMAgent
-from .ollama_feedback_agent import OllamaFeedbackAgent
-from .ollama_agent import OllamaAgent
+#from .ollama_feedback_agent import OllamaFeedbackAgent
+#from .ollama_agent import OllamaAgent

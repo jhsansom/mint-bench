@@ -1,0 +1,45 @@
+{
+    "agent": {
+        "agent_class": "VLLMAgent",
+        "config": {
+            "model_name": "Qwen/Qwen3-8B",
+            "chat_mode": true,
+            "max_tokens": 512,
+            "temperature": 0.0,
+            "openai.api_base": "http://localhost:8080/v1",
+            "add_system_message": false
+        }
+    },
+    "task": {
+        "task_class": "MultipleChoiceTask",
+        "task_type": "reasoning",
+        "tool_imports": [
+            [
+                "mint.tools.wikipedia_search",
+                "WikipediaQueryRun"
+            ]
+        ],
+        "filepath": "data/processed/mmlu/test_prompts.json"
+    },
+    "output_dir": "data/outputs/Qwen/Qwen3-8B/F=None/max3_p2+tool+cd/reasoning/mmlu",
+    "env_config": {
+        "max_steps": 3,
+        "use_tools": true,
+        "max_propose_solution": 2,
+        "count_down": true
+    },
+    "feedback_config": {
+        "feedback_agent_config": {
+            "chat_mode": true,
+            "max_tokens": 1024,
+            "temperature": 0.0,
+            "stop": [
+                "\nQ:"
+            ],
+            "agent_class": "None",
+            "model_name": "None"
+        },
+        "pseudo_human_feedback": "None",
+        "feedback_form": "None"
+    }
+}

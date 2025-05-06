@@ -410,6 +410,16 @@
     ]
   },
   {
+    "label": "Qwen3-8B (8B, Base)",
+    "data": [
+      8.19,
+      25.77,
+      38.05,
+      40.44,
+      45.05
+    ]
+  },
+  {
     "label": "Starling-LM-7B-alpha (7B, RLHF)",
     "data": [
       6.31,

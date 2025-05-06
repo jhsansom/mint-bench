@@ -117,7 +117,7 @@ function run_config_glob() {
 # ========================
 
 # TODO(user): Set your model_name here
-MODEL_NAME=qwen2.5:32b
+MODEL_NAME=Qwen/Qwen3-8B
 FEEDBACK_MODEL=None
 
 # TODO(user): Set to your configs here,

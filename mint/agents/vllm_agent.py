@@ -1,6 +1,6 @@
 from .openai_lm_agent import OpenAILMAgent
 import openai
-import openai.error
+from openai import OpenAI
 import logging
 import traceback
 from mint.datatypes import Action
@@ -29,6 +29,11 @@ class VLLMAgent(OpenAILMAgent):
             "\nHuman:",
         ]
 
+        self.client = OpenAI(
+            base_url=self.api_base,
+            api_key=self.api_key,
+        )
+
     def format_prompt(self, messages):
         """Format messages into a prompt for the model."""
         prompt = ""
@@ -44,10 +49,9 @@ class VLLMAgent(OpenAILMAgent):
         backoff.fibo,
         # https://platform.openai.com/docs/guides/error-codes/python-library-error-types
         (
-            openai.error.Timeout,
-            openai.error.RateLimitError,
-            openai.error.ServiceUnavailableError,
-            openai.error.APIConnectionError,
+            openai.Timeout,
+            openai.RateLimitError,
+            openai.APIConnectionError,
         ),
     )
     def call_lm(self, messages):
@@ -61,38 +65,34 @@ class VLLMAgent(OpenAILMAgent):
 
         try:
             if self.config["chat_mode"]:
-                response = openai.ChatCompletion.create(
+                response = self.client.chat.completions.create(
                     model=self.config["model_name"],
                     messages=messages,
                     max_tokens=self.config.get("max_tokens", 512),
                     temperature=self.config.get("temperature", 0),
-                    stop=self.stop_words,
-                    api_base=self.api_base,
-                    api_key=self.api_key,
+                    stop=self.stop_words
                 )
-                resp_str = response.choices[0].message["content"]
+                resp_str = response.choices[0].message.content
 
             else:
                 prompt = self.format_prompt(messages)
-                response = openai.Completion.create(
+                response = self.client.chat.completions.create(
                     model=self.config["model_name"],
                     prompt=prompt,
                     max_tokens=self.config.get("max_tokens", 512),
                     temperature=self.config.get("temperature", 0),
-                    stop=self.stop_words,
-                    api_base=self.api_base,
-                    api_key=self.api_key,
+                    stop=self.stop_words
                 )
                 resp_str = response.choices[0].text
 
-        except openai.error.APIError as e:
+        except openai.APIError as e:
             # This is special handling for FastChat Library
             # and is actually unrelated to the OpenAI API
             error_message = e.args[0]
             # Invalid response object from API: '{"object":"error","message":"This model\'s maximum context length is 4096 tokens. However, you requested 4169 tokens (3657 in the messages, 512 in the completion). Please reduce the length of the messages or completion.","type":"invalid_request_error","param":null,"code":null}' (HTTP response code was 400))
             if "maximum context length" in error_message:
-                raise openai.error.InvalidRequestError(e.args[0], "")
+                raise openai.InvalidRequestError(e.args[0], "")
             else:
                 raise e
         resp_str = resp_str.rstrip()  # remove trailing spaces (usually caused by llama)
-        return resp_str, response["usage"]
+        return resp_str, response.usage

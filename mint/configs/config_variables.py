@@ -47,13 +47,13 @@ FEEDBACK_CONFIG = {
 
 EVALUATED_MODEL_LIST = [
     {
-        "agent_class": "OllamaAgent",
+        "agent_class": "VLLMAgent",
         "config": {
-            "model_name": "qwen2.5:32b",
+            "model_name": "Qwen/Qwen3-8B",
             "chat_mode": True,
             "max_tokens": 512,
             "temperature": 0.0,
-            #"openai.api_base": "http://localhost:11434/api",
+            "openai.api_base": "http://localhost:8080/v1",
             "add_system_message": False,
         },
     },

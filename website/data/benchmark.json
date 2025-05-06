@@ -260,7 +260,7 @@
     "3":34.72,
     "4":35.21,
     "5":36.67,
-    "Slope":5.97,
+    "Slope":5.96,
     "rsquared":0.71,
     "Delta Feedback":"-",
     "Success Rate (5 turn) w\/ GPT-4 Feedback":"-"
@@ -330,7 +330,7 @@
     "3":12.46,
     "4":13.31,
     "5":11.95,
-    "Slope":1.66,
+    "Slope":1.65,
     "rsquared":0.47,
     "Delta Feedback":5.6,
     "Success Rate (5 turn) w\/ GPT-4 Feedback":17.6
@@ -386,7 +386,7 @@
     "3":6.66,
     "4":6.48,
     "5":7.34,
-    "Slope":1.49,
+    "Slope":1.48,
     "rsquared":0.83,
     "Delta Feedback":1.7,
     "Success Rate (5 turn) w\/ GPT-4 Feedback":9.0
@@ -498,7 +498,7 @@
     "3":33.28,
     "4":38.74,
     "5":38.57,
-    "Slope":7.07,
+    "Slope":7.06,
     "rsquared":0.72,
     "Delta Feedback":"-",
     "Success Rate (5 turn) w\/ GPT-4 Feedback":"-"
@@ -512,7 +512,7 @@
     "3":21.67,
     "4":25.6,
     "5":25.6,
-    "Slope":5.74,
+    "Slope":5.73,
     "rsquared":0.78,
     "Delta Feedback":"-",
     "Success Rate (5 turn) w\/ GPT-4 Feedback":"-"
@@ -570,6 +570,20 @@
     "5":28.84,
     "Slope":2.35,
     "rsquared":0.54,
+    "Delta Feedback":"-",
+    "Success Rate (5 turn) w\/ GPT-4 Feedback":"-"
+  },
+  {
+    "model":"Qwen3-8B",
+    "size":"8B",
+    "type":"Base",
+    "1":8.19,
+    "2":25.77,
+    "3":38.05,
+    "4":40.44,
+    "5":45.05,
+    "Slope":8.84,
+    "rsquared":0.89,
     "Delta Feedback":"-",
     "Success Rate (5 turn) w\/ GPT-4 Feedback":"-"
   },
@@ -652,7 +666,7 @@
     "3":24.06,
     "4":31.74,
     "5":36.18,
-    "Slope":8.17,
+    "Slope":8.18,
     "rsquared":0.96,
     "Delta Feedback":15.2,
     "Success Rate (5 turn) w\/ GPT-4 Feedback":51.4
